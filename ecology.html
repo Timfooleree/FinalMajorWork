@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecology of Kanto - Field Guide</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- ECOLOGY PAGE FULLY WIDENED & CENTERED STYLES --- */
+        .top-nav-bar {
+            justify-content: center !important;
+            padding: 25px 0 10px 0;
+            width: 100%;
+        }
+
+        .pokedex-main-title-xl {
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        /* Forces the main container to center and stretch wide */
+        .dex-main-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: auto;
+        }
+
+        .ecology-scroll-container {
+            width: 92%;
+            max-width: 1350px; /* Expanded wide to fill screen space evenly */
+            margin: 0 auto;
+            padding: 30px 0 90px 0;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .ecology-section {
+            background: rgba(2, 18, 38, 0.88);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(0, 240, 255, 0.4);
+            border-radius: 16px;
+            padding: 45px 60px;
+            margin-bottom: 40px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            box-sizing: border-box;
+            text-align: center; /* Centers all inner text */
+        }
+
+        .ecology-section:hover {
+            border-color: #00f0ff;
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.45);
+        }
+
+        .ecology-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2rem;
+            color: #00f0ff;
+            margin-bottom: 25px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .ecology-text {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #e0f2fe;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            text-align: center; /* Perfectly centered text */
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ecology-media-wrapper {
+            width: 100%;
+            max-width: 950px;
+            margin: 30px auto;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 240, 255, 0.35);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+            transition: transform 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .ecology-media-wrapper:hover {
+            transform: scale(1.01);
+            border-color: #00f0ff;
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+        }
+
+        .ecology-img, .ecology-video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body class="pokedex-page">
+
+<div class="hologram-bg-exact">
+    <div class="digital-grid"></div>
+    <div class="scanlines-filter"></div>
+
+    <div class="moving-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</div>
+
+<div class="fullscreen-dex-layout" style="overflow-y: auto; height: 100vh;">
+
+    <header class="top-nav-bar">
+        <div class="nav-left" style="justify-content: center; width: 100%;">
+            <h1 class="pokedex-main-title-xl">THE ECOLOGY OF KANTO</h1>
+        </div>
+    </header>
+
+    <main class="dex-main-content">
+
+        <div class="ecology-scroll-container">
+
+            <div class="ecology-section">
+                <p class="ecology-text">
+                    Kanto is a sprawling region, bursting with lush nature and mesmerizing landscape. It is also, of course, home to the mysterious creatures known to us as Pokémon. They reside here in great numbers in fact. Pokémon can be found all over the world, from the vast ocean to the highest mountaintop, Pokémon can thrive in any environment, with each one possessing unique and miraculous abilities. Kanto is known far and wide for its lush greenery, expansive cave systems and serene seascapes.
+                </p>
+
+                <div class="ecology-media-wrapper">
+                    <img src="Web%20Assets/kantomap.png" alt="Kanto Map" class="ecology-img">
+                </div>
+            </div>
+
+            <div class="ecology-section">
+                <h2 class="ecology-title">Viridian Forest</h2>
+                <p class="ecology-text">
+                    One of Kanto's most famous forests is Viridian Forest just north of Viridian City and South of Pewter City. Commonly known as “The Eternally Green Paradise”, Viridian Forest is well known among the people of Kanto for being the first location where trainers are fully on their own during their journey, leaving behind the familiarity of the city and entering an area filled with tall trees and large patches of grass that extend for great distances. Various berries such as nanab berries can be found growing along the branches, while vibrant flower beds decorate the forest floor.
+                </p>
+
+                <div class="ecology-media-wrapper">
+                    <img src="Web%20Assets/wood.png" alt="Viridian Forest Canopy" class="ecology-img">
+                </div>
+
+                <p class="ecology-text">
+                    Because the forest is full of tall, thick trees, sunlight barely touches the forest floor, making it a safe haven for Bug-type Pokémon such as Caterpie as they are well hidden from natural predators such as Pidgeotto. However, during seasons such as winter and autumn, the tree's massive leaves eventually die out, revealing the younger, thinner trees of the forest and giving bird Pokémon a clear view of their prey. Due to the wide abundance of bug Pokémon in the forest, the area is widely popular among new trainers and bug catchers as these Pokémon are much easier to raise and the large leaves provide shade from the hot sun during the summer.
+                </p>
+
+                <div class="ecology-media-wrapper">
+                    <img src="Web%20Assets/viridian_trees.png" alt="Viridian Forest Trees" class="ecology-img">
+                </div>
+
+                <p class="ecology-text">
+                    But Bug-type Pokémon are not the only ones who inhabit this great forest, as the locals of Viridian City have a local belief that if one finds a Pikachu or Bulbasaur in the forest, then that person is exceptionally lucky. While various footprints have been spotted around the forest, Bulbasaur and Pikachu are a rare sight due to their naturally docile nature, with scientists believing they most likely live in burrows as it allows them to easily avoid human interaction and travel across the forest more quickly.
+                </p>
+            </div>
+
+            <div class="ecology-section">
+                <h2 class="ecology-title">Mt. Moon</h2>
+                <p class="ecology-text">
+                    Just east of Pewter City and west of Cerulean City is the grandiose Mt. Moon. Standing at a height of 3750m, Mt. Moon is the first major cave system trainers must navigate to continue their journey across the Kanto Region. On the outside, Mt. Moon is made up of sharp brownish-grey rock formations that stick out in various angles, while the inside features uneven terrain with various stalagmites and stalactites decorating the ceiling and floor. Due to its many levels, many trainers spend a lot of time in the tunnels looking for treasures such as fossils, while others seek out travellers looking for a battle, eager to refine their skills. Due to the constant movement of travellers and heavy impacts of nearby battles, dust particles constantly fill the air often making navigation quite difficult.
+                </p>
+
+                <div class="ecology-media-wrapper">
+                    <video src="Web%20Assets/dust_mountain.mp4" class="ecology-video" autoplay loop muted playsinline></video>
+                </div>
+
+                <p class="ecology-text">
+                    Additionally Mt. Moon is also known as "Mystical Mountain” due to the frequent meteor showers that occur around the area, this peculiar phenomenon still being researched by scientists to this day. Many people flock to the mountain after meteor showers as they often leave special treasures behind, this being small crystalized pieces that locals call star pieces and comet shards. Said to have come from fallen stars during the meteor shower, many people search for them in the caves as their shiny appearance is highly valuable among jewellers. Because it gets little to no sunlight, Mt. is inhabited by Pokémon such as Geodude, the rock Pokémon and Zubat, the bat Pokémon who much prefer the absence of daylight.
+                </p>
+
+                <div class="ecology-media-wrapper">
+                    <img src="Web%20Assets/star_piece.png" alt="Mt. Moon Star Piece" class="ecology-img">
+                </div>
+
+                <p class="ecology-text">
+                    However, sightings of the rare Fairy-type Pokémon Clefairy have been reported in the past. Not much is known about why they appear here, but many believe it is linked to the meteor showers that regularly occur; a common detail among these sightings is that large groups are always seen gathering during a full moon to dance beneath the stars.
+                </p>
+            </div>
+
+            <div class="ecology-section">
+                <h2 class="ecology-title">The Seafoam Islands</h2>
+                <p class="ecology-text">
+                    Located in southern Kanto 500km off the mainland lies the majestic Seafoam Islands, a pair of identical islands connected by a network of treacherous rock formations. Said to have formed after two volcanoes simultaneously erupted underwater, the Seafoam Islands have been an enigma to the citizens of Kanto for generations due to its perplexing properties. While the seas of Route 19, 20 and 21 have small soothing waves and calming currents, the sea surrounding the twin islands are unusually rough and unpredictable, with many travellers noting how quickly the sea's aggression suddenly changes, almost as if it is telling them to turn back. Despite shimmering under the sun during the day, pointed rocks can be seen surrounding the shore as well as dangerous Pokémon such as Gyarados and Tentacruel circling the waters, looking for an easy meal.
+                </p>
+
+                <div class="ecology-media-wrapper">
+                    <img src="Web%20Assets/bottomsea.png" alt="Seafoam Islands Ocean" class="ecology-img">
+                </div>
+
+                <p class="ecology-text">
+                    Additionally, those who are lucky to reach the shore are met with the large cave systems within the island's mountain, going far underground where temperatures drop below 10 degrees celsius. What perplexes scientists the most about these caves however is that the lower levels have been seen containing snow, a stark contrast to the warmer tropical climate on the surface of the island. Many believe the reason for this mysterious phenomenon is due to a fabled azure bird, whose power to control ice has plunged the island's caves into a permanent cold spell for all eternity, but no concrete proof has been found of this mysterious Pokémon.
+                </p>
+
+                <div class="ecology-media-wrapper">
+                    <img src="Web%20Assets/ocean_rock.png" alt="Seafoam Islands Rock and Ice" class="ecology-img">
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

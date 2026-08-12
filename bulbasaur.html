@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex - #0001 Bulbasaur</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+</head>
+<body class="pokedex-page">
+
+<div class="hologram-bg-exact">
+    <div class="digital-grid"></div>
+    <div class="scanlines-filter"></div>
+
+    <div class="moving-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</div>
+
+<div class="fullscreen-dex-layout">
+
+    <header class="top-nav-bar">
+        <div class="nav-left">
+            <img src="Web%20Assets/pokedex.png" alt="Pokédex Icon" class="dex-brand-icon-xl">
+            <h1 class="pokedex-main-title-xl">POKÉDEX</h1>
+        </div>
+    </header>
+
+    <main class="dex-main-content">
+
+        <section class="dex-left-panel">
+
+            <div class="pokemon-header-title">
+                <span class="dex-id">#0001</span>
+                <h2 class="dex-name">BULBASAUR</h2>
+                <div class="gender-symbols">
+                    <span class="gender male">♂</span>
+                    <span class="gender female">♀</span>
+                </div>
+            </div>
+
+            <div class="category-subtitle">
+                <span>SEED POKÉMON</span>
+            </div>
+
+            <div class="info-group">
+                <label class="group-label">TYPE</label>
+                <div class="types-container">
+                    <div class="type-pill grass">
+                        <img src="Web%20Assets/grass.png" alt="Grass Icon">
+                        <span>GRASS</span>
+                    </div>
+                    <div class="type-pill poison">
+                        <img src="Web%20Assets/poison.png" alt="Poison Icon">
+                        <span>POISON</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-group metrics-row">
+                <div class="metric-card">
+                    <img src="Web%20Assets/height.png" alt="Height Icon" class="metric-img">
+                    <div class="metric-text">
+                        <span class="metric-title">HEIGHT</span>
+                        <span class="metric-val">0.7 m</span>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <img src="Web%20Assets/weight.png" alt="Weight Icon" class="metric-img">
+                    <div class="metric-text">
+                        <span class="metric-title">WEIGHT</span>
+                        <span class="metric-val">6.9 kg</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-group audio-row">
+                <button id="dex-audio-btn" class="cyber-action-btn">
+                    <img src="Web%20Assets/audio.png" alt="Audio Icon" class="action-icon">
+                    <span>DEX AUDIO</span>
+                </button>
+                <button id="play-cry-btn" class="cyber-action-btn">
+                    <img src="Web%20Assets/audio.png" alt="Audio Icon" class="action-icon">
+                    <span>PLAY CRY</span>
+                </button>
+            </div>
+
+            <div class="info-group dex-entry-sidebar">
+                <label class="group-label">POKÉDEX ENTRY</label>
+                <p class="dex-entry-text">
+                    Bulbasaur are born with a seed embedded on their back. As the Pokémon grows, the seed grows with it. They are often found in forests resting in bright sunlight, absorbing energy to fuel the seed’s development. In return, the seed provides nutrients that support their growth.
+                </p>
+            </div>
+
+        </section>
+
+        <section class="dex-center-panel">
+            <div class="stage-container">
+
+                <model-viewer
+                        id="bulbasaur-model"
+                        src="Web Assets/bulbasaur.glb"
+                        alt="Bulbasaur 3D Model"
+                        camera-controls
+                        touch-action="pan-y"
+                        disable-zoom
+                        disable-pan
+                        interaction-prompt="none"
+                        shadow-intensity="1"
+                        shadow-softness="1"
+                        exposure="1.2"
+                        environment-image="neutral"
+                        tone-mapping="commerce"
+                        camera-orbit="0deg 75deg 4.0m"
+                        field-of-view="25deg">
+                </model-viewer>
+
+            </div>
+        </section>
+
+    </main>
+
+    <div id="habitat-modal" class="habitat-preview-overlay">
+        <div class="habitat-card-frame">
+            <div class="habitat-card-header">
+                <span class="habitat-card-title">BULBASAUR HABITAT MAP</span>
+            </div>
+            <img src="Web%20Assets/bulbasaur_habitat.png" alt="Bulbasaur Habitat" class="habitat-img">
+        </div>
+    </div>
+
+    <footer class="dex-bottom-hud">
+        <div class="bottom-right-controls">
+            <div class="controls-hint">
+                <img src="Web%20Assets/arrows.png" alt="Arrow Keys" class="arrows-img">
+                <span>USE MOUSE OR ARROW KEYS TO ROTATE</span>
+            </div>
+
+            <button id="habitat-btn" class="habitat-btn">
+                <img src="Web%20Assets/map.png" alt="Map Icon" class="habitat-icon">
+                <span>HABITAT</span>
+            </button>
+        </div>
+    </footer>
+
+</div>
+
+<audio id="audio-entry" src="Web%20Assets/bulbasaur_entry.mp3" preload="auto"></audio>
+<audio id="audio-cry" src="Web%20Assets/bulbasaur_cry.mp3" preload="auto"></audio>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const model = document.getElementById("bulbasaur-model");
+        const dexAudioBtn = document.getElementById("dex-audio-btn");
+        const playCryBtn = document.getElementById("play-cry-btn");
+        const audioEntry = document.getElementById("audio-entry");
+        const audioCry = document.getElementById("audio-cry");
+        const habitatBtn = document.getElementById("habitat-btn");
+        const habitatModal = document.getElementById("habitat-modal");
+
+        /* 1. ARROW KEY ROTATION SUPPORT */
+        const fixedRadius = 4.0;
+
+        function parseOrbit() {
+            const orbit = model.getCameraOrbit();
+            return {
+                theta: orbit.theta * (180 / Math.PI),
+                phi: orbit.phi * (180 / Math.PI)
+            };
+        }
+
+        window.addEventListener("keydown", (e) => {
+            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.code)) {
+                e.preventDefault();
+                let { theta, phi } = parseOrbit();
+
+                switch(e.code) {
+                    case "ArrowLeft":
+                        theta -= 4;
+                        break;
+                    case "ArrowRight":
+                        theta += 4;
+                        break;
+                    case "ArrowUp":
+                        phi = Math.max(20, phi - 3);
+                        break;
+                    case "ArrowDown":
+                        phi = Math.min(140, phi + 3);
+                        break;
+                }
+
+                model.cameraOrbit = `${theta}deg ${phi}deg ${fixedRadius}m`;
+            }
+        });
+
+        /* 2. DEX AUDIO TOGGLE */
+        dexAudioBtn.addEventListener("click", () => {
+            if (!audioEntry.paused) {
+                audioEntry.pause();
+                audioEntry.currentTime = 0;
+                dexAudioBtn.classList.remove("playing");
+            } else {
+                audioCry.pause();
+                audioCry.currentTime = 0;
+                audioEntry.play();
+                dexAudioBtn.classList.add("playing");
+            }
+        });
+
+        audioEntry.addEventListener("ended", () => {
+            dexAudioBtn.classList.remove("playing");
+        });
+
+        /* 3. PLAY CRY */
+        playCryBtn.addEventListener("click", () => {
+            audioCry.currentTime = 0;
+            audioCry.play();
+        });
+
+        /* 4. HABITAT HOVER DISPLAY */
+        habitatBtn.addEventListener("mouseenter", () => {
+            habitatModal.classList.add("visible");
+        });
+
+        habitatBtn.addEventListener("mouseleave", () => {
+            habitatModal.classList.remove("visible");
+        });
+    });
+</script>
+</body>
+</html>

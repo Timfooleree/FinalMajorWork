@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Survey - Mt. Moon</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+    <style>
+        /* --- MT. MOON SURVEY DARKER & ENHANCED DUST STYLES --- */
+        .top-nav-bar {
+            justify-content: center !important;
+            padding: 25px 0 10px 0;
+            width: 100%;
+        }
+
+        .pokedex-main-title-xl {
+            text-align: center;
+            letter-spacing: 2px;
+            font-size: 1.8rem;
+        }
+
+        .dex-main-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: auto;
+            flex-grow: 1;
+        }
+
+        .survey-stage-container {
+            width: 92%;
+            max-width: 1350px;
+            height: 72vh;
+            margin: 0 auto;
+            border: 2px solid rgba(0, 240, 255, 0.4);
+            border-radius: 16px;
+            background: rgba(1, 10, 22, 0.92);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+        }
+
+        /* Enhanced Floating Dust Particles Overlay for Mt. Moon */
+        .dust-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image:
+                    radial-gradient(circle, rgba(0,240,255,0.6) 1.5px, transparent 1.5px),
+                    radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px),
+                    radial-gradient(circle, rgba(0,240,255,0.3) 2px, transparent 2px);
+            background-size: 80px 80px, 120px 120px, 60px 60px;
+            background-position: 0 0, 40px 60px, 20px 30px;
+            animation: floatDust 15s linear infinite;
+            z-index: 5;
+            opacity: 0.8;
+        }
+
+        @keyframes floatDust {
+            0% {
+                background-position: 0 0, 40px 60px, 20px 30px;
+            }
+            100% {
+                background-position: 100px 120px, 140px 180px, 120px 150px;
+            }
+        }
+
+        .survey-back-btn {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2) 0%, rgba(0, 100, 150, 0.4) 100%);
+            border: 1.5px solid #00f0ff;
+            color: #00f0ff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .survey-back-btn:hover {
+            background: #00f0ff;
+            color: #020c1c;
+            box-shadow: 0 0 15px #00f0ff;
+        }
+
+        /* Audio Toggle Button Styling */
+        .audio-toggle-btn {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, rgba(0, 100, 150, 0.3) 100%);
+            border: 1.5px solid #00f0ff;
+            color: #00f0ff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+        }
+
+        .audio-toggle-btn:hover {
+            background: #00f0ff;
+            color: #020c1c;
+            box-shadow: 0 0 15px #00f0ff;
+        }
+
+        .audio-icon {
+            height: 18px;
+            width: 18px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="pokedex-page" style="opacity: 0; transition: opacity 0.3s ease;">
+
+<div class="hologram-bg-exact">
+    <div class="digital-grid"></div>
+    <div class="scanlines-filter"></div>
+
+    <div class="moving-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</div>
+
+<div class="fullscreen-dex-layout" style="display: flex; flex-direction: column; height: 100vh; overflow: hidden;">
+
+    <header class="top-nav-bar">
+        <div class="nav-left" style="justify-content: center; width: 100%;">
+            <h1 class="pokedex-main-title-xl">FIELD SURVEY: MT. MOON</h1>
+        </div>
+    </header>
+
+    <main class="dex-main-content">
+        <div class="survey-stage-container">
+            <div class="dust-particles"></div>
+
+            <model-viewer
+                    id="mt-moon-model"
+                    src="Web Assets/moon.glb"
+                    alt="Mt. Moon Cave Environment"
+                    camera-controls
+                    touch-action="pan-y"
+                    disable-pan
+                    disable-zoom
+                    interaction-prompt="none"
+                    shadow-intensity="1.5"
+                    exposure="0.6"
+                    environment-image="neutral"
+                    tone-mapping="commerce"
+                    camera-target="auto auto auto"
+                    camera-orbit="0deg 90deg 0.15m"
+                    min-camera-orbit="auto auto 0.05m"
+                    max-camera-orbit="auto auto 0.3m"
+                    field-of-view="75deg">
+            </model-viewer>
+
+            <audio id="cave-audio" src="Web%20Assets/cavesounds.mp3" loop preload="auto"></audio>
+        </div>
+    </main>
+
+    <footer class="dex-bottom-hud" style="width: 100%; padding: 15px 0;">
+        <div class="bottom-right-controls" style="width: 92%; max-width: 1350px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="fieldsurvey_hub.html" class="survey-back-btn">← BACK TO HUB</a>
+                <button id="sound-toggle-btn" class="audio-toggle-btn" onclick="toggleAudio()">
+                    <img src="Web%20Assets/audio.png" alt="Audio Icon" class="audio-icon">
+                    <span id="sound-text">SOUND: OFF</span>
+                </button>
+            </div>
+            <div class="controls-hint" style="display: flex; align-items: center; gap: 10px;">
+                <img src="Web%20Assets/arrows.png" alt="Arrow Keys" class="arrows-img" style="height: 24px;">
+                <span>USE MOUSE OR ARROW KEYS TO LOOK AROUND CAVE</span>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+    // Fix browser back-button cache blank screen issue
+    window.addEventListener("pageshow", (event) => {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    });
+
+    // Fade page in on load
+    window.addEventListener("DOMContentLoaded", () => {
+        document.body.style.opacity = "1";
+    });
+
+    // Smooth fade transition when clicking internal links
+    document.addEventListener("click", function(e) {
+        const target = e.target.closest("a");
+        if (target && target.href && target.hostname === window.location.hostname && target.getAttribute("target") !== "_blank") {
+            e.preventDefault();
+            const destination = target.href;
+            document.body.style.transition = "opacity 0.3s ease";
+            document.body.style.opacity = "0";
+            setTimeout(() => {
+                window.location.href = destination;
+            }, 300);
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const model = document.getElementById("mt-moon-model");
+
+        /* AUTO-CENTER ON LOAD SO VIEWER STARTS INSIDE */
+        model.addEventListener("load", () => {
+            model.cameraTarget = "auto auto auto";
+            model.cameraOrbit = "0deg 90deg 0.15m";
+        });
+
+        /* ARROW KEY ROTATION SUPPORT (UP/DOWN SWAPPED) */
+        window.addEventListener("keydown", (e) => {
+            if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.code)) {
+                e.preventDefault();
+                const orbit = model.getCameraOrbit();
+                let theta = orbit.theta * (180 / Math.PI);
+                let phi = orbit.phi * (180 / Math.PI);
+
+                switch(e.code) {
+                    case "ArrowLeft":
+                        theta += 5;
+                        break;
+                    case "ArrowRight":
+                        theta -= 5;
+                        break;
+                    case "ArrowUp":
+                        phi = Math.min(170, phi + 4);
+                        break;
+                    case "ArrowDown":
+                        phi = Math.max(10, phi - 4);
+                        break;
+                }
+
+                model.cameraOrbit = `${theta}deg ${phi}deg 0.15m`;
+            }
+        });
+    });
+
+    /* AUDIO TOGGLE FUNCTION */
+    function toggleAudio() {
+        const audio = document.getElementById("cave-audio");
+        const soundText = document.getElementById("sound-text");
+
+        if (audio.paused) {
+            audio.play().then(() => {
+                soundText.textContent = "SOUND: ON";
+            }).catch(error => {
+                console.log("Audio playback blocked or failed:", error);
+            });
+        } else {
+            audio.pause();
+            soundText.textContent = "SOUND: OFF";
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokéscapes: Kanto - Pokédex</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="pokedex-body">
+
+<div class="hologram-bg-subpage">
+    <div class="scanlines-filter"></div>
+    <div class="digital-grid"></div>
+    <div class="moving-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</div>
+
+<div class="pokedex-viewport">
+
+    <nav class="nav-tabs">
+        <a href="index.html" class="tab-btn">Ecology</a>
+        <a href="pokedex.html" class="tab-btn active">Pokédex</a>
+        <a href="#" class="tab-btn">Field Survey</a>
+    </nav>
+
+    <main class="dex-glass-panel">
+
+        <header class="dex-filter-bar">
+            <div class="filter-left">
+                <img src="Web%20Assets/pokeball.png" alt="Pokeball" class="header-icon">
+                <span class="count-display" id="countDisplay">003</span>
+            </div>
+
+            <div class="filter-right">
+                <div class="filter-dropdown-container">
+                    <button class="filter-btn" id="filterBtn">
+                        <img src="Web%20Assets/filter.png" alt="Filter" class="filter-icon">
+                    </button>
+
+                    <div class="filter-dropdown" id="filterDropdown">
+                        <div class="dropdown-item active" data-sort="number">Sort by Number</div>
+                        <div class="dropdown-item" data-sort="height">Sort by Height</div>
+                        <div class="dropdown-item" data-sort="weight">Sort by Weight</div>
+                        <div class="dropdown-item" data-sort="alpha">Alphabetical</div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item reverse-option" id="reverseToggle">
+                            <span id="reverseCheck">☐</span> Reverse Order
+                        </div>
+                    </div>
+                </div>
+
+                <span class="sort-status" id="sortStatusText">Sorted by number</span>
+            </div>
+        </header>
+
+        <hr class="dex-divider">
+
+        <div class="pokemon-grid" id="pokemonGrid">
+        </div>
+
+    </main>
+</div>
+
+<script>
+    // Data definition with sorting metrics
+    const pokemonData = [
+        {
+            id: '001',
+            name: 'Bulbasaur',
+            height: 0.7, // meters
+            weight: 6.9, // kg
+            img: 'Web Assets/bulbasaur_button.png'
+        },
+        {
+            id: '002',
+            name: 'Zubat',
+            height: 0.8, // meters
+            weight: 7.5, // kg
+            img: 'Web Assets/zubat_select.png'
+        },
+        {
+            id: '003',
+            name: 'Tentacruel',
+            height: 1.6, // meters
+            weight: 55.0, // kg
+            img: 'Web Assets/tentacruel_select.png'
+        }
+    ];
+
+    let currentSort = 'number';
+    let isReversed = false;
+
+    const filterBtn = document.getElementById('filterBtn');
+    const filterDropdown = document.getElementById('filterDropdown');
+    const pokemonGrid = document.getElementById('pokemonGrid');
+    const sortStatusText = document.getElementById('sortStatusText');
+    const reverseToggle = document.getElementById('reverseToggle');
+    const reverseCheck = document.getElementById('reverseCheck');
+
+    // Toggle Filter Menu
+    filterBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        filterDropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', () => {
+        filterDropdown.classList.remove('show');
+    });
+
+    // Handle Dropdown Selections
+    document.querySelectorAll('.dropdown-item[data-sort]').forEach(item => {
+        item.addEventListener('click', (e) => {
+            document.querySelectorAll('.dropdown-item[data-sort]').forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+
+            currentSort = item.getAttribute('data-sort');
+            updateSortText(item.innerText);
+            renderGrid();
+        });
+    });
+
+    // Handle Reverse Checkbox
+    reverseToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isReversed = !isReversed;
+        reverseCheck.innerText = isReversed ? '☑' : '☐';
+        reverseToggle.classList.toggle('active', isReversed);
+        renderGrid();
+    });
+
+    function updateSortText(label) {
+        sortStatusText.innerText = label + (isReversed ? ' (Rev)' : '');
+    }
+
+    // Render Cards in Requested Orders
+    function renderGrid() {
+        let list = [...pokemonData];
+
+        if (currentSort === 'number') {
+            list.sort((a, b) => parseInt(a.id) - parseInt(b.id));
+        } else if (currentSort === 'height') {
+            // Requested order: Zubat, Bulbasaur, Tentacruel
+            const order = ['Zubat', 'Bulbasaur', 'Tentacruel'];
+            list.sort((a, b) => order.indexOf(a.name) - order.indexOf(b.name));
+        } else if (currentSort === 'weight') {
+            // Requested order: Zubat, Bulbasaur, Tentacruel
+            const order = ['Zubat', 'Bulbasaur', 'Tentacruel'];
+            list.sort((a, b) => order.indexOf(a.name) - order.indexOf(b.name));
+        } else if (currentSort === 'alpha') {
+            // Requested order: Bulbasaur, Tentacruel, Zubat
+            const order = ['Bulbasaur', 'Tentacruel', 'Zubat'];
+            list.sort((a, b) => order.indexOf(a.name) - order.indexOf(b.name));
+        }
+
+        if (isReversed) {
+            list.reverse();
+        }
+
+        pokemonGrid.innerHTML = '';
+        list.forEach(mon => {
+            const card = document.createElement('div');
+            card.className = 'pokemon-card';
+            card.innerHTML = `<img src="${mon.img}" alt="${mon.name}">`;
+            pokemonGrid.appendChild(card);
+        });
+    }
+
+    // Initial render
+    renderGrid();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokéscapes: Kanto - Pokédex</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="pokedex-body-perfect" style="opacity: 0; transition: opacity 0.3s ease;">
+
+<div class="hologram-bg-exact">
+    <div class="scanlines-filter"></div>
+    <div class="digital-grid"></div>
+    <div class="moving-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</div>
+
+<div class="pokedex-viewport-perfect">
+
+    <nav class="nav-tabs-perfect">
+        <a href="ecology.html" class="tab-btn-large">Ecology</a>
+        <a href="hub.html" class="tab-btn-large active">Pokédex</a>
+        <a href="fieldsurvey_hub.html" class="tab-btn-large">Field Survey</a>
+    </nav>
+
+    <main class="dex-glass-panel-bottom">
+
+        <header class="dex-filter-bar">
+            <div class="filter-left">
+                <div class="header-action-btn" style="display: inline-flex; align-items: center; cursor: default;">
+                    <img src="Web%20Assets/pokeball.png" alt="Pokeball" class="header-icon">
+                </div>
+                <span class="count-display-white" id="countDisplay">003</span>
+            </div>
+
+            <div class="filter-right">
+                <a href="map.html" class="header-action-btn">
+                    <img src="Web%20Assets/map.png" alt="Map" class="action-icon">
+                </a>
+
+                <div class="filter-dropdown-container">
+                    <button class="filter-btn" id="filterBtn">
+                        <img src="Web%20Assets/filter.png" alt="Filter" class="action-icon">
+                    </button>
+
+                    <div class="filter-dropdown" id="filterDropdown">
+                        <div class="dropdown-item active" data-sort="number" data-label="number">Sort by Number</div>
+                        <div class="dropdown-item" data-sort="height" data-label="height">Sort by Height</div>
+                        <div class="dropdown-item" data-sort="weight" data-label="weight">Sort by Weight</div>
+                        <div class="dropdown-item" data-sort="alpha" data-label="alphabetical">Alphabetical</div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item reverse-option" id="reverseToggle">
+                            <span id="reverseCheck">☐</span> Reverse Order
+                        </div>
+                    </div>
+                </div>
+
+                <span class="sort-status-white" id="sortStatusText">Sorted by number</span>
+            </div>
+        </header>
+
+        <hr class="dex-divider">
+
+        <div class="pokemon-grid-centered" id="pokemonGrid">
+        </div>
+
+    </main>
+</div>
+
+<script>
+    // Fix browser back-button cache (bfcache) blank screen issue
+    window.addEventListener("pageshow", (event) => {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    });
+
+    // Fade page in on load
+    window.addEventListener("DOMContentLoaded", () => {
+        document.body.style.opacity = "1";
+    });
+
+    // Smooth fade transition when clicking internal links
+    document.addEventListener("click", function(e) {
+        const target = e.target.closest("a");
+        if (target && target.href && target.hostname === window.location.hostname && target.getAttribute("target") !== "_blank") {
+            e.preventDefault();
+            const destination = target.href;
+            document.body.style.transition = "opacity 0.3s ease";
+            document.body.style.opacity = "0";
+            setTimeout(() => {
+                window.location.href = destination;
+            }, 300);
+        }
+    });
+
+    const pokemonData = [
+        { id: '001', name: 'Bulbasaur', img: 'Web Assets/bulbasaur.png', link: 'bulbasaur.html' },
+        { id: '002', name: 'Zubat', img: 'Web Assets/zubat.png', link: 'zubat.html' },
+        { id: '003', name: 'Tentacruel', img: 'Web Assets/tentacruel.png', link: 'tentacruel.html' }
+    ];
+
+    let currentSort = 'number';
+    let currentLabel = 'number';
+    let isReversed = false;
+
+    const filterBtn = document.getElementById('filterBtn');
+    const filterDropdown = document.getElementById('filterDropdown');
+    const pokemonGrid = document.getElementById('pokemonGrid');
+    const sortStatusText = document.getElementById('sortStatusText');
+    const reverseToggle = document.getElementById('reverseToggle');
+    const reverseCheck = document.getElementById('reverseCheck');
+
+    filterBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        filterDropdown.classList.toggle('show');
+    });
+
+    document.addEventListener('click', () => {
+        filterDropdown.classList.remove('show');
+    });
+
+    document.querySelectorAll('.dropdown-item[data-sort]').forEach(item => {
+        item.addEventListener('click', () => {
+            document.querySelectorAll('.dropdown-item[data-sort]').forEach(i => i.classList.remove('active'));
+            item.classList.add('active');
+
+            currentSort = item.getAttribute('data-sort');
+            currentLabel = item.getAttribute('data-label');
+            updateStatusDisplay();
+            renderGrid();
+        });
+    });
+
+    reverseToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isReversed = !isReversed;
+        reverseCheck.innerText = isReversed ? '☑' : '☐';
+        updateStatusDisplay();
+        renderGrid();
+    });
+
+    function updateStatusDisplay() {
+        sortStatusText.innerText = `Sorted by ${currentLabel}` + (isReversed ? ' (Rev)' : '');
+    }
+
+    function renderGrid() {
+        let list = [...pokemonData];
+
+        if (currentSort === 'number') {
+            list.sort((a, b) => parseInt(a.id) - parseInt(b.id));
+        } else if (currentSort === 'height' || currentSort === 'weight') {
+            const order = ['Zubat', 'Bulbasaur', 'Tentacruel'];
+            list.sort((a, b) => order.indexOf(a.name) - order.indexOf(b.name));
+        } else if (currentSort === 'alpha') {
+            const order = ['Bulbasaur', 'Tentacruel', 'Zubat'];
+            list.sort((a, b) => order.indexOf(a.name) - order.indexOf(b.name));
+        }
+
+        if (isReversed) list.reverse();
+
+        pokemonGrid.innerHTML = '';
+        list.forEach(mon => {
+            const card = document.createElement('a');
+            card.href = mon.link;
+            card.className = 'pokemon-blue-frame-card';
+            card.style.textDecoration = 'none';
+            card.innerHTML = `<img src="${mon.img}" alt="${mon.name}" class="pokemon-img">`;
+            pokemonGrid.appendChild(card);
+        });
+    }
+
+    renderGrid();
+</script>
+
+</body>
+</html>

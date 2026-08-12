@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Survey Hub - 3D Environments</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- FIELD SURVEY HUB SPECIFIC STYLES --- */
+        .top-nav-bar {
+            justify-content: center !important;
+            padding: 25px 0 10px 0;
+        }
+
+        .pokedex-main-title-xl {
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .dex-main-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+        }
+
+        .survey-grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1350px;
+            margin: auto;
+            padding: 10px;
+            z-index: 10;
+        }
+
+        .survey-card {
+            background: rgba(2, 18, 38, 0.75);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(0, 240, 255, 0.4);
+            border-radius: 16px;
+            padding: 22px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            text-decoration: none;
+            aspect-ratio: 4 / 4.5;
+        }
+
+        .survey-card:hover {
+            border-color: #00f0ff;
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.6), inset 0 0 15px rgba(0, 240, 255, 0.3);
+        }
+
+        .survey-img-wrapper {
+            width: 100%;
+            height: 175px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            position: relative;
+        }
+
+        .survey-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .survey-card:hover .survey-img {
+            transform: scale(1.05);
+            filter: brightness(1.2) drop-shadow(0 0 10px #00f0ff);
+        }
+
+        .survey-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.15rem;
+            color: #00f0ff;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .survey-desc {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #e0f2fe;
+            line-height: 1.35;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .survey-explore-btn {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.2) 0%, rgba(0, 100, 150, 0.4) 100%);
+            border: 1.5px solid #00f0ff;
+            color: #00f0ff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            padding: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .survey-card:hover .survey-explore-btn {
+            background: #00f0ff;
+            color: #020c1c;
+            box-shadow: 0 0 15px #00f0ff;
+        }
+
+        @media (max-width: 1000px) {
+            .survey-grid-container {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+            .survey-card {
+                aspect-ratio: auto;
+            }
+        }
+    </style>
+</head>
+<body class="pokedex-page" style="opacity: 0; transition: opacity 0.3s ease;">
+
+<div class="hologram-bg-exact">
+    <div class="digital-grid"></div>
+    <div class="scanlines-filter"></div>
+
+    <div class="moving-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</div>
+
+<div class="fullscreen-dex-layout">
+
+    <header class="top-nav-bar">
+        <div class="nav-left" style="justify-content: center; width: 100%; display: flex; align-items: center; position: relative;">
+            <a href="hub.html" class="header-action-btn" style="position: absolute; left: 0; display: inline-flex; align-items: center; text-decoration: none; margin-left: 20px;">
+                <img src="Web%20Assets/pokeball.png" alt="Pokeball" class="dex-brand-icon-xl" style="width: 32px; height: 32px;">
+            </a>
+            <h1 class="pokedex-main-title-xl">FIELD SURVEY</h1>
+        </div>
+    </header>
+
+    <main class="dex-main-content">
+
+        <div class="survey-grid-container">
+
+            <a href="mtmoon.html" class="survey-card">
+                <div>
+                    <div class="survey-img-wrapper">
+                        <img src="Web%20Assets/star_piece.png" alt="Mt. Moon" class="survey-img">
+                    </div>
+                    <h2 class="survey-title">MT. MOON</h2>
+                    <p class="survey-desc">Explore a cavernous tunnel filled with mesmerizing stalagmites and stalactites that decorate the ceiling and floor. Keep an eye out for sparkling star pieces and nests of wild Zubat.  </p>
+                </div>
+                <div class="survey-explore-btn">INITIALIZE SURVEY</div>
+            </a>
+
+            <a href="seafoamislands.html" class="survey-card">
+                <div>
+                    <div class="survey-img-wrapper">
+                        <img src="Web%20Assets/ocean_rock.png" alt="Seafoam Islands" class="survey-img">
+                    </div>
+                    <h2 class="survey-title">SEAFOAM ISLANDS</h2>
+                    <p class="survey-desc">Navigate the vast ocean that separates the twin islands from Kanto's mainland. Observe the calm waves contrasted with the sharp rocks that fill the area with constant danger.</p>
+                </div>
+                <div class="survey-explore-btn">INITIALIZE SURVEY</div>
+            </a>
+
+            <a href="virdianforest.html" class="survey-card">
+                <div>
+                    <div class="survey-img-wrapper">
+                        <img src="Web%20Assets/viridian_trees.png" alt="Viridian Forest" class="survey-img">
+                    </div>
+                    <h2 class="survey-title">VIRIDIAN FOREST</h2>
+                    <p class="survey-desc">Wander through the once lush forest as winter draws near and the trees lose their leaves, allowing you to view the tall mountain peaks and colourful gems of the forest such as nanab berries and vibrant flower beds. </p>
+                </div>
+                <div class="survey-explore-btn">INITIALIZE SURVEY</div>
+            </a>
+
+        </div>
+
+    </main>
+
+    <footer class="dex-bottom-hud">
+        <div class="bottom-right-controls" style="width: 100%; justify-content: center;">
+            <div class="controls-hint" style="text-align: center;">
+                <span>SELECT AN ENVIRONMENT TO BEGIN 3D FIELD SCAN</span>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+    // Fix browser back-button cache blank screen issue
+    window.addEventListener("pageshow", (event) => {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    });
+
+    // Fade page in on load
+    window.addEventListener("DOMContentLoaded", () => {
+        document.body.style.opacity = "1";
+    });
+
+    // Smooth fade transition when clicking internal links
+    document.addEventListener("click", function(e) {
+        const target = e.target.closest("a");
+        if (target && target.href && target.hostname === window.location.hostname && target.getAttribute("target") !== "_blank") {
+            e.preventDefault();
+            const destination = target.href;
+            document.body.style.transition = "opacity 0.3s ease";
+            document.body.style.opacity = "0";
+            setTimeout(() => {
+                window.location.href = destination;
+            }, 300);
+        }
+    });
+</script>
+
+</body>
+</html>

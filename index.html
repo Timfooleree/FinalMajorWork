@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokéscapes: Kanto</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="opacity: 0; transition: opacity 0.3s ease;">
+
+<div class="boot-overlay" id="bootOverlay">
+    <div class="rotom-face">
+        <svg viewBox="0 0 240 180" class="rotom-svg">
+            <defs>
+                <linearGradient id="rotomBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#3b82f6" />
+                    <stop offset="100%" stop-color="#1d4ed8" />
+                </linearGradient>
+            </defs>
+
+            <g transform="translate(72, 62) rotate(-22)">
+                <ellipse cx="0" cy="0" rx="28" ry="50" fill="#ffffff" stroke="#00f0ff" stroke-width="3" />
+                <ellipse cx="0" cy="0" rx="16" ry="34" fill="url(#rotomBlue)" stroke="#00f0ff" stroke-width="2" />
+                <line x1="-28" y1="-6" x2="-16" y2="-6" stroke="#020813" stroke-width="2.5" />
+                <line x1="16" y1="8" x2="28" y2="8" stroke="#020813" stroke-width="2.5" />
+            </g>
+
+            <g transform="translate(168, 62) rotate(22)">
+                <ellipse cx="0" cy="0" rx="28" ry="50" fill="#ffffff" stroke="#00f0ff" stroke-width="3" />
+                <ellipse cx="0" cy="0" rx="16" ry="34" fill="url(#rotomBlue)" stroke="#00f0ff" stroke-width="2" />
+                <line x1="-28" y1="8" x2="-16" y2="8" stroke="#020813" stroke-width="2.5" />
+                <line x1="16" y1="-6" x2="28" y2="-6" stroke="#020813" stroke-width="2.5" />
+            </g>
+
+            <g>
+                <path d="M 78 122 Q 120 138 162 122 Q 120 166 78 122 Z" fill="#ffffff" stroke="#00f0ff" stroke-width="3" stroke-linejoin="round" />
+                <line x1="104" y1="131" x2="104" y2="144" stroke="#020813" stroke-width="2.5" />
+                <line x1="136" y1="131" x2="136" y2="144" stroke="#020813" stroke-width="2.5" />
+            </g>
+        </svg>
+    </div>
+
+    <div class="boot-line"></div>
+    <div class="boot-text">BZZZrt! INITIALIZING POKEDEX_v1.0...</div>
+</div>
+
+<div class="hologram-bg">
+    <div class="scanlines-filter"></div>
+    <div class="digital-grid"></div>
+
+    <div class="hud-shapes">
+        <div class="radar-ring radar-ring-1"></div>
+        <div class="radar-ring radar-ring-2"></div>
+    </div>
+
+    <div class="pokeball-container" id="pokeballContainer">
+        <div class="pokeball" id="pokeball">
+            <div class="pokeball-button"></div>
+        </div>
+    </div>
+
+    <div class="moving-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</div>
+
+<div class="page-content">
+    <section class="hero-section">
+        <div class="dex-header-text">student 39237237 presents...</div>
+        <h1 class="dex-title">Pokéscapes: Kanto</h1>
+        <div class="dex-subtitle">exploring the kanto region in a new perspective</div>
+
+        <div style="margin-top: 30px;">
+            <a href="hub.html" class="explore-btn" style="background: linear-gradient(135deg, rgba(0, 240, 255, 0.2) 0%, rgba(0, 100, 150, 0.4) 100%); border: 1.5px solid #00f0ff; color: #00f0ff; font-family: 'Orbitron', sans-serif; font-size: 1rem; padding: 12px 30px; border-radius: 8px; cursor: pointer; text-decoration: none; transition: all 0.3s ease; text-transform: uppercase; display: inline-block; box-shadow: 0 0 15px rgba(0,240,255,0.3);">EXPLORE REGION →</a>
+        </div>
+    </section>
+
+    <section class="software-section">
+        <h2 class="software-heading">This project was made with the following software</h2>
+
+        <div class="software-grid">
+            <div class="software-card">
+                <img src="Web%20Assets/bandlab.png" alt="BandLab">
+            </div>
+
+            <div class="software-card">
+                <img src="Web%20Assets/blender.png" alt="Blender">
+            </div>
+
+            <div class="software-card">
+                <img src="Web%20Assets/github.png" alt="GitHub">
+            </div>
+
+            <div class="software-card">
+                <img src="Web%20Assets/webstorm.png" alt="WebStorm">
+            </div>
+        </div>
+
+        <footer class="disclaimer-footer">
+            <p><strong>Disclaimer:</strong> Pokémon and related marks are trademarks of Nintendo, Game Freak, and Creatures Inc. (PLEASE DON'T SUE ME NINTENDO LAWYERS) This is an educational, non-commercial student project. Sound effects are used with permission from Pixaby, and all other assets belong to their respective owners.</p>
+        </footer>
+    </section>
+</div>
+
+<style>
+    .explore-btn:hover {
+        background: #00f0ff !important;
+        color: #020c1c !important;
+        box-shadow: 0 0 20px #00f0ff !important;
+        transform: translateY(-2px);
+    }
+</style>
+
+<script>
+    // Fix browser back-button cache (bfcache) blank screen & replay boot animation
+    window.addEventListener("pageshow", (event) => {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    });
+
+    // Fade page in on load
+    window.addEventListener("DOMContentLoaded", () => {
+        document.body.style.opacity = "1";
+    });
+
+    // Smooth fade transition when clicking internal links
+    document.addEventListener("click", function(e) {
+        const target = e.target.closest("a");
+        if (target && target.href && target.hostname === window.location.hostname && target.getAttribute("target") !== "_blank") {
+            e.preventDefault();
+            const destination = target.href;
+            document.body.style.transition = "opacity 0.3s ease";
+            document.body.style.opacity = "0";
+            setTimeout(() => {
+                window.location.href = destination;
+            }, 300);
+        }
+    });
+
+    // Pokéball Click-to-Spin
+    const pokeballContainer = document.getElementById('pokeballContainer');
+    const pokeball = document.getElementById('pokeball');
+
+    pokeballContainer.addEventListener('click', () => {
+        pokeball.classList.remove('spin');
+        void pokeball.offsetWidth; // Trigger reflow
+        pokeball.classList.add('spin');
+    });
+
+    // Boot screen timing
+    setTimeout(() => {
+        document.body.classList.add('boot-complete');
+    }, 2000);
+</script>
+
+</body>
+</html>
