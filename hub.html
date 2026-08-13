@@ -10,6 +10,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Added styling for the clickable and hovering title */
+        .clickable-title {
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+        }
+        .clickable-title:hover {
+            transform: scale(1.05);
+            color: #4ade80;
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
+        }
+
+        /* Increased size for map.png and filter.png icons */
+        .filter-right .action-icon[src*="map.png"],
+        .filter-dropdown-container .action-icon[src*="filter.png"] {
+            width: 28px !important;
+            height: 28px !important;
+            object-fit: contain;
+        }
+    </style>
 </head>
 <body class="pokedex-body-perfect" style="opacity: 0; transition: opacity 0.3s ease;">
 
@@ -35,9 +55,9 @@
 
         <header class="dex-filter-bar">
             <div class="filter-left">
-                <div class="header-action-btn" style="display: inline-flex; align-items: center; cursor: default;">
+                <a href="hub.html" class="header-action-btn" style="display: inline-flex; align-items: center; text-decoration: none;">
                     <img src="Web%20Assets/pokeball.png" alt="Pokeball" class="header-icon">
-                </div>
+                </a>
                 <span class="count-display-white" id="countDisplay">003</span>
             </div>
 

@@ -6,6 +6,18 @@
     <title>Kanto Region Map & Guide</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* Added styling for the clickable and hovering title */
+        .clickable-title {
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+        }
+        .clickable-title:hover {
+            transform: scale(1.05);
+            color: #4ade80;
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
+        }
+    </style>
 </head>
 <body>
 
@@ -22,10 +34,20 @@
     </div>
 </div>
 
+<header class="top-nav-bar" style="display: flex; justify-content: center; padding: 25px 0 10px 0; width: 100%;">
+    <div class="nav-left" style="justify-content: center; width: 100%; display: flex; align-items: center; position: relative;">
+        <a href="hub.html" class="header-action-btn" style="position: absolute; left: 0; display: inline-flex; align-items: center; text-decoration: none; margin-left: 20px;">
+            <img src="Web%20Assets/pokeball.png" alt="Pokeball" class="dex-brand-icon-xl" style="width: 32px; height: 32px;">
+        </a>
+        <a href="hub.html" style="text-decoration: none; display: inline-flex; align-items: center;">
+            <h1 class="pokedex-main-title-xl clickable-title" style="text-align: center; letter-spacing: 2px;">KANTO REGION MAP</h1>
+        </a>
+    </div>
+</header>
+
 <main class="page-container">
 
     <section class="map-section">
-        <h1 class="section-title">Kanto Region Map</h1>
         <div class="map-wrapper">
             <img src="Web%20Assets/kantomap.png" alt="Kanto Region Map" class="map-display">
         </div>

@@ -8,6 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <style>
+        /* Added styling for the clickable and hovering title */
+        .clickable-title {
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+        }
+        .clickable-title:hover {
+            transform: scale(1.05);
+            color: #4ade80;
+            text-shadow: 0 0 10px rgba(74, 222, 128, 0.6);
+        }
+    </style>
 </head>
 <body class="pokedex-page">
 
@@ -29,7 +41,9 @@
     <header class="top-nav-bar">
         <div class="nav-left">
             <img src="Web%20Assets/pokedex.png" alt="Pokédex Icon" class="dex-brand-icon-xl">
-            <h1 class="pokedex-main-title-xl">POKÉDEX</h1>
+            <a href="hub.html" style="text-decoration: none; display: inline-flex; align-items: center;">
+                <h1 class="pokedex-main-title-xl clickable-title">POKÉDEX</h1>
+            </a>
         </div>
     </header>
 
